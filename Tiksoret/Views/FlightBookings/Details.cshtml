@@ -1,0 +1,83 @@
+﻿@model Tiksoret.Models.FlightBooking
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FlightBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TicketReserve_tbls.ResFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TicketReserve_tbls.ResFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bCusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bCusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bCusAdress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bCusAdress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bCusEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bCusEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bCusSeats)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bCusSeats)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bPhoneNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bPhoneNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bCusID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bCusID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice,"Price per Ticket $")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookingID }) |
+    @Html.ActionLink("Back to List", "Index2")
+</p>

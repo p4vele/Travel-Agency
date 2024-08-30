@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Tiksoret.Models.FlightBooking>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketReserve_tbls.ResFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketReserve_tbls.ResTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TicketReserve_tbls.ResTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bCusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bCusAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bCusEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bCusSeats)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bPhoneNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bCusID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.bCusID.ToString() == Session["ID"].ToString())
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TicketReserve_tbls.ResFrom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TicketReserve_tbls.ResTo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TicketReserve_tbls.ResTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bCusName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bCusAdress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bCusEmail)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bCusSeats)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bPhoneNum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.bCusID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TotalPrice)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
+       
+    </td>
+</tr>
+    }
+}
+
+</table>

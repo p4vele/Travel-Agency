@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Tiksoret.Models.TicketReserve_tbl>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["ID"] != null)
+{
+    <center><h4>Hello @Session["Username"].ToString()</h4></center>
+}
+
+@{
+    Html.BeginForm("Search", "FlightBook", "Index", FormMethod.Post);
+    <!-- Booking Start -->
+    <div class="container-fluid booking mt-5 pb-5">
+        <div class="container pb-5">
+            <div class="bg-light shadow" style="padding: 30px;">
+                <div class="row align-items-center" style="min-height: 60px;">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <center>
+                                        <table>
+                                            <tr>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="col-md-3">
+                                                        <div class="mb-3 mb-md-0">
+                                                            <select class="city1" style="height: 47px;" name="cityfrom" required="" list="rcity">
+                                                                <option selected>From Destenation</option>
+                                                                @foreach (var item in ViewBag.dcity)
+                                                                {
+                                                                    <option>@item</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <select class="city2" style="height: 47px;" name="cityto" required="" list="acity">
+                                                        <option selected>To Destenation</option>
+                                                        @foreach (var item in ViewBag.acity)
+                                                        {
+                                                            <option>@item</option>
+                                                        }
+                                                    </select>
+
+                                                </td>
+                                                <td>
+                                                    <div class="date" id="date1" data-target-input="nearest">
+                                                        <input type="date" name="date1" />
+                                                    </div>
+
+                                                </td>
+                                                <td>
+                                                    <select class="sort" id="sort" style="height: 47px;" name="sort">
+                                                        <option selected>Sort By</option>
+                                                        <option>Price Up</option>
+                                                        <option>Price Down</option>
+                                                        <option>Country</option>
+                                                    </select>
+
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-block" type="submit" style="height: 47px; margin-top: -2px;">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Booking End -->
+
+
+}
+
+
+
+
+
+
+
+

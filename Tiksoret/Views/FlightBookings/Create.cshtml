@@ -1,0 +1,92 @@
+﻿@model Tiksoret.Models.FlightBooking
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Make A Reservation</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Flight Booking</h4>
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.bCusName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="bCusName" value="@Session["FirstName"].ToString() @Session["LastName"].ToString()" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bCusAdress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.bCusAdress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.bCusAdress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bCusEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="bCusEmail" value="@Session["Email"].ToString() " />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bCusSeats, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.bCusSeats ,new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.bCusSeats, "", new { @class = "text-danger" })
+                @ViewBag.msg
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bPhoneNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="bPhoneNum" value="@Session["PhoneNumber"].ToString() " />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.bCusID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="bCusID" value="@Session["ID"].ToString()" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalPrice, "Price per Ticket $", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+
+                    <input type="text" name="TotalPrice" value="@ViewBag.test" readonly />
+                }
+
+            </div>
+        </div>
+
+        <div  class="form-group">
+            @Html.LabelFor(model => model.ResID, "Flight ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="ResID" value="@ViewBag.ResID" readonly />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Proceed to payment" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

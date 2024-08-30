@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+@using System.Configuration
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form method="post" action="@ConfigurationManager.AppSettings["PayPalSubmitUrl"]">
+
+        <input type="hidden" name="upload" value="1" />
+        <input type="hidden" name="return" value="@ConfigurationManager.AppSettings["returnurl"]" />
+        <input type="hidden" name="cmd" value="_cart" />
+        <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["PayPalUsername"]" />
+
+        <input type="hidden" name="item_name_1" value="@ViewBag.name" />
+        <input type="hidden" name="item_number_1" value="p1" />
+        <input type="hidden" name="amount_1" value="@ViewBag.qq" />
+        <input type="hidden" name="quantity_1" value="@ViewBag.pc" />
+
+        <center>
+            <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" />
+        </center>
+    </form>
+</body>
+</html>

@@ -1,0 +1,117 @@
+﻿@model Tiksoret.Models.Payment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Payment</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="UserID" value="@Session["ID"].ToString()" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ResID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="ResID" value="@ViewBag.id" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="LastName" value="@Session["LastName"].ToString()" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="FirstName" value="@Session["FirstName"].ToString()" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="Email" value="@Session["Email"].ToString()" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CreditCardNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreditCardNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreditCardNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Digits, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Digits, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Digits, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExD, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ExD, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExD, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExM, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ExM, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExM, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="Price" value="@ViewBag.pp" readonly />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Pay" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+@using System.Configuration
+<form method="post" action="@ConfigurationManager.AppSettings["PayPalSubmitUrl"]">
+
+    <input type="hidden" name="upload" value="1" />
+    <input type="hidden" name="return" value="@ConfigurationManager.AppSettings["returnurl"]" />
+    <input type="hidden" name="cmd" value="_cart" />
+    <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["PayPalUsername"]" />
+
+    <input type="hidden" name="item_name_1" value="@ViewBag.name" />
+    <input type="hidden" name="item_number_1" value="p1" />
+    <input type="hidden" name="amount_1" value="@ViewBag.qq" />
+    <input type="hidden" name="quantity_1" value="@ViewBag.pc" />
+
+    <center>
+        <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" />
+    </center>
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
